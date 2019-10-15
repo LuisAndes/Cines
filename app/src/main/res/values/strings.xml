@@ -19,4 +19,6 @@
     <string name="Titulo">Título</string>
     <string name="Hora">Hora</string>
     <string name="IntroTitulo">Introduzca alguna palabra del título</string>
+    <string name="Descripcion">Descripcion de la película</string>
+    <string name="Comprar">Comprar</string>
 </resources>
