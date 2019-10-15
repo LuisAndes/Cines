@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CarteleraScr"></activity>
+        <activity android:name=".FichaScr"></activity>
+        <activity android:name=".CarteleraScr" />
         <activity android:name=".RegUsrScr" />
         <activity android:name=".PantallaLogin" />
         <activity android:name=".MainActivity">
