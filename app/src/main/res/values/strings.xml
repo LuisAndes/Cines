@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Cines</string>
+    <string name="txt_Inicio">Bienvenido a la app de Cines Aragón</string>
+    <string name="btn_Inicio">Comenzar</string>
+    <string name="txtUsuario">Introduzca el nombre de usuario</string>
+    <string name="txtContrasenya">Introduzca la contraseña</string>
+    <string name="btnLogin">Acceder</string>
+    <string name="btnRegistrar">Darse de alta</string>
+    <string name="Cartelera">Cartelera</string>
+    <string name="Perfil">Perfil</string>
+    <string name="Historial">Historial</string>
+    <string name="Cines">Cines</string>
+    <string name="Usuario">Usuario</string>
+    <string name="Contrasenya">Contraseña</string>
+    <string name="FiltraPor">Filtrar por:</string>
+    <string name="Duracion">Duración</string>
+    <string name="Fecha">Fecha</string>
+    <string name="Tema">Tema</string>
+    <string name="Titulo">Título</string>
+    <string name="Hora">Hora</string>
+    <string name="IntroTitulo">Introduzca alguna palabra del título</string>
+</resources>
