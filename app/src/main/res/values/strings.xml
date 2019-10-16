@@ -21,4 +21,10 @@
     <string name="IntroTitulo">Introduzca alguna palabra del título</string>
     <string name="Descripcion">Descripcion de la película</string>
     <string name="Comprar">Comprar</string>
+    <string name="Pagar">Pagar</string>
+    <string name="BorrarSel">Borrar selección</string>
+    <string name="SelMetodoPago">Seleccione método de pago</string>
+    <string name="PayPal">PayPal</string>
+    <string name="Tarjeta">Tarjeta</string>
+    <string name="ConfirmaPago">Confirmar pago</string>
 </resources>

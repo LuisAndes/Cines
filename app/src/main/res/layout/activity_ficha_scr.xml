@@ -47,12 +47,13 @@
 
     <Spinner
         android:id="@+id/spinCine"
-        android:layout_width="409dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:autofillHints='"Seleccione cine"'
         app:layout_constraintBottom_toTopOf="@+id/spinHora"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +67,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
+        android:autofillHints='"Seleccione hora"'
         app:layout_constraintBottom_toTopOf="@+id/btnComprar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +79,128 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/Comprar"
+        app:layout_constraintBottom_toTopOf="@+id/spinFilas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinHora" />
+
+    <Spinner
+        android:id="@+id/spinFilas"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:autofillHints='"Seleccione fila"'
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnComprar" />
+
+    <Spinner
+        android:id="@+id/spinButacas"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="1dp"
+        android:autofillHints='"Seleccione butacas"'
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinFilas" />
+
+    <Button
+        android:id="@+id/btnPagar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/Pagar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnBorrarSel"
+        app:layout_constraintTop_toBottomOf="@+id/txtButacasSeleccionadas" />
+
+    <TextView
+        android:id="@+id/txtFilaSeleccionada"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Fila/s"
+        app:layout_constraintEnd_toStartOf="@+id/txtButacasSeleccionadas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinButacas" />
+
+    <TextView
+        android:id="@+id/txtButacasSeleccionadas"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Butaca/s"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtFilaSeleccionada"
+        app:layout_constraintTop_toBottomOf="@+id/spinButacas" />
+
+    <Button
+        android:id="@+id/btnBorrarSel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/BorrarSel"
+        app:layout_constraintEnd_toStartOf="@+id/btnPagar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFilaSeleccionada" />
+
+    <TextView
+        android:id="@+id/txtMetodoPago"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="226dp"
+        android:text="@string/SelMetodoPago"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnBorrarSel" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
+        android:checkedButton="@id/optTarjeta"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMetodoPago">
+
+        <RadioButton
+            android:id="@+id/optTarjeta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Tarjeta" />
+
+        <RadioButton
+            android:id="@+id/optPayPal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/PayPal" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnConfirmarPago"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/ConfirmaPago"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
