@@ -25,6 +25,14 @@
     <string name="BorrarSel">Borrar selección</string>
     <string name="SelMetodoPago">Seleccione método de pago</string>
     <string name="PayPal">PayPal</string>
-    <string name="Tarjeta">Tarjeta</string>
     <string name="ConfirmaPago">Confirmar pago</string>
+    <string name="Nombre">Nombre:</string>
+    <string name="Apellidos">Apellidos:</string>
+    <string name="Direccion">Dirección:</string>
+    <string name="Telefono">Teléfono:</string>
+    <string name="Email">E-Mail:</string>
+    <string name="Tarjeta">Nº Tarjeta de crédito:</string>
+    <string name="Paypal">Dirección de PayPal:</string>
+    <string name="GuardarPerfil">Guardar</string>
+    <string name="Historico">Historial de compras</string>
 </resources>
