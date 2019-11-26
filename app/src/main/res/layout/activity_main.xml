@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnInicio"
-        app:srcCompat="@drawable/imgCine" />
+        app:srcCompat="@drawable/common_full_open_on_phone" />
 
     <TextView
         android:id="@+id/txtInicio"

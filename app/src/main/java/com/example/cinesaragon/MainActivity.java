@@ -1,6 +1,5 @@
 package com.example.cinesaragon;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -16,8 +15,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void comenzar(View view) {
-        Intent i = new Intent(this, PantallaLogin.class );
-        startActivity(i);
+        PantallaLogin.openLogin(this);
     }
 
 
