@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "606233060414",
+    "firebase_url": "https://cines-aragon-13e98.firebaseio.com",
+    "project_id": "cines-aragon-13e98",
+    "storage_bucket": "cines-aragon-13e98.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:606233060414:android:d0fcc10d06a23ab0945d6f",
+        "android_client_info": {
+          "package_name": "com.example.cinesaragon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "606233060414-4pjuor67h3vf25ndspvn5e1qnqeq0l3m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cinesaragon",
+            "certificate_hash": "b2490a21f4811390334054506dc1ac5dde558981"
+          }
+        },
+        {
+          "client_id": "606233060414-0uomldldbmd3efob5dv6bbh61mkc4cei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLaJTpYFtx33BztJ0NwqIsIGt_5seIRTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "606233060414-0uomldldbmd3efob5dv6bbh61mkc4cei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
