@@ -20,7 +20,7 @@ public class GetCurrentUser {
         this.database = database;
     }
 
-    public void execute(ResultCallback<User, DatabaseError> callback) {
+    public void retrieve(ResultCallback<User, DatabaseError> callback) {
         database.child("users")
                 .child(authentication.getCurrentUser().getEmail().replaceAll("\\.", "_"))
                 .addListenerForSingleValueEvent(new ValueEventListener() {
