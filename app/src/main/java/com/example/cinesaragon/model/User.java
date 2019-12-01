@@ -42,6 +42,14 @@ public class User {
         return phone;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("User{");
+        sb.append("email='").append(email).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
     public static class Builder {
 
         String name;

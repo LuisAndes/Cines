@@ -1,6 +1,7 @@
 package com.example.cinesaragon.injection;
 
 import com.example.cinesaragon.PantallaLogin;
+import com.example.cinesaragon.domain.GetCurrentUser;
 import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.RegisterUser;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,5 +22,11 @@ public class DomainModule {
     @Provides
     public LoginUser provideLoginUser(FirebaseAuth authentication) {
         return new LoginUser(authentication);
+    }
+
+    @Provides
+    public GetCurrentUser provideCurrentUser(FirebaseAuth authentication,
+                                             DatabaseReference database) {
+        return new GetCurrentUser(authentication, database);
     }
 }
