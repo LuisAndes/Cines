@@ -2,13 +2,16 @@ package com.example.cinesaragon.model;
 
 public class Ticket {
 
+    final String user;
     final String movie;
     final String session;
     final String cinema;
 
-    private Ticket(String movie,
+    private Ticket(String user,
+                   String movie,
                    String session,
                    String cinema) {
+        this.user = user;
         this.movie = movie;
         this.session = session;
         this.cinema = cinema;
@@ -23,11 +26,13 @@ public class Ticket {
     }
 
     public class Builder {
+        String user = "";
         String movie = "";
         String session = "";
         String cinema = "";
 
-        public Builder() {
+        public Builder(String user) {
+            this.user = user;
         }
 
         public Builder seeMovie(String movie) {
@@ -46,7 +51,7 @@ public class Ticket {
         }
 
         public Ticket purchase() {
-            return new Ticket(movie, session, cinema);
+            return new Ticket(user, movie, session, cinema);
         }
     }
 }

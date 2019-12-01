@@ -2,20 +2,20 @@ package com.example.cinesaragon.model;
 
 public class Session {
 
-    final String id;
     final String movie;
+    final String cinema;
     final String time;
     final int remainingSeats;
 
-    private Session(String id, String movie, String time, int remainingSeats) {
-        this.id = id;
+    private Session(String movie, String cinema, String time, int remainingSeats) {
         this.movie = movie;
+        this.cinema = cinema;
         this.time = time;
         this.remainingSeats = remainingSeats;
     }
 
-    public String getId() {
-        return id;
+    public String getCinema() {
+        return cinema;
     }
 
     public String getMovie() {
