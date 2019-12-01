@@ -8,33 +8,35 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-
-import org.jetbrains.annotations.NotNull;
+import com.example.cinesaragon.domain.LoginUser;
+import com.example.cinesaragon.domain.RegisterUser;
+import com.example.cinesaragon.domain.helpers.ResultCallback;
 
 import javax.inject.Inject;
 
 public class PantallaLogin extends BaseActivity {
 
     @Inject
-    FirebaseAuth authentication;
+    RegisterUser registerUser;
+    @Inject
+    LoginUser loginUser;
 
     EditText username;
     EditText password;
     Button login;
     View signIn;
 
+    boolean isLogin = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_login);
+        this.isLogin = getIntent().getExtras().getBoolean(EXTRA_LOGIN);
+
         username = findViewById(R.id.txtUsuario);
         password = findViewById(R.id.txtContrasenya);
         login = findViewById(R.id.btnLogin);
-
-        final boolean isLogin = getIntent().getExtras().getBoolean(EXTRA_LOGIN);
 
         login.setText(isLogin ? R.string.btnLogin : R.string.btnRegistrar);
         login.setOnClickListener(view -> {
@@ -52,24 +54,35 @@ public class PantallaLogin extends BaseActivity {
     }
 
     private void doRegister() {
-        onResult(authentication.createUserWithEmailAndPassword(
+        registerUser.execute(this,
                 username.getText().toString(),
-                password.getText().toString()));
+                password.getText().toString(),
+                new ResultCallback<Void, Void>() {
+                    @Override
+                    public void onResult(Void result) {
+                        // Send user to the correct screen
+                    }
+
+                    @Override
+                    public void onError(Void error) {
+                        Toast.makeText(PantallaLogin.this, "Authentication failed.",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void doLogin() {
-        onResult(authentication.signInWithEmailAndPassword(
+        loginUser.execute(this,
                 username.getText().toString(),
-                password.getText().toString()));
-    }
+                password.getText().toString(),
+                new ResultCallback<Void, Void>() {
+                    @Override
+                    public void onResult(Void result) {
+                        // Send user to the correct screen
+                    }
 
-    @NotNull
-    private Task<AuthResult> onResult(Task<AuthResult> authResultTask) {
-        return authResultTask
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
-                        // Go to Cartelera?
-                    } else {
+                    @Override
+                    public void onError(Void error) {
                         Toast.makeText(PantallaLogin.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
