@@ -12,6 +12,8 @@ import com.example.cinesaragon.domain.RegisterUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.concurrent.ThreadPoolExecutor;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -21,36 +23,42 @@ import dagger.Provides;
 public class DomainModule {
 
     @Provides
-    public CreateUser provideCreateUser(FirebaseFirestore database) {
-        return new CreateUser(database);
+    public CreateUser provideCreateUser(ThreadPoolExecutor executor,
+                                        FirebaseFirestore database) {
+        return new CreateUser(executor, database);
     }
 
     @Provides
-    public RegisterUser provideRegisterUser(FirebaseAuth authentication,
+    public RegisterUser provideRegisterUser(ThreadPoolExecutor executor,
+                                            FirebaseAuth authentication,
                                             CreateUser createUser) {
-        return new RegisterUser(authentication, createUser);
+        return new RegisterUser(executor, authentication, createUser);
     }
 
     @Provides
-    public LoginUser provideLoginUser(FirebaseAuth authentication) {
-        return new LoginUser(authentication);
+    public LoginUser provideLoginUser(ThreadPoolExecutor executor,
+                                      FirebaseAuth authentication) {
+        return new LoginUser(executor, authentication);
     }
 
     @Provides
-    public GetCurrentUser provideCurrentUser(FirebaseAuth authentication,
+    public GetCurrentUser provideCurrentUser(ThreadPoolExecutor executor,
+                                             FirebaseAuth authentication,
                                              FirebaseFirestore database) {
-        return new GetCurrentUser(authentication, database);
+        return new GetCurrentUser(executor, authentication, database);
     }
 
     @Provides
-    public ModifyCurrentUser provideModifyCurrentUser(FirebaseAuth authentication,
+    public ModifyCurrentUser provideModifyCurrentUser(ThreadPoolExecutor executor,
+                                                      FirebaseAuth authentication,
                                                       FirebaseFirestore database,
                                                       CreateUser createUser) {
-        return new ModifyCurrentUser(authentication, database, createUser);
+        return new ModifyCurrentUser(executor, authentication, database, createUser);
     }
 
     @Provides
-    public GetCinemas provideUnregisteredCinemas(FirebaseFirestore database) {
-        return new GetCinemas(database);
+    public GetCinemas provideUnregisteredCinemas(ThreadPoolExecutor executor,
+                                                 FirebaseFirestore database) {
+        return new GetCinemas(executor, database);
     }
 }

@@ -61,14 +61,14 @@ public class PantallaLogin extends BaseActivity {
         registerUser.execute(this,
                 username.getText().toString(),
                 password.getText().toString(),
-                new ResultCallback<Void, Exception>() {
+                new ResultCallback<Void, Exception>(this) {
                     @Override
-                    public void onResult(Void result) {
+                    public void doOnResult(Void result) {
                         UserScr.goToProfile(PantallaLogin.this);
                     }
 
                     @Override
-                    public void onError(Exception error) {
+                    public void doOnError(Exception error) {
                         Toast.makeText(PantallaLogin.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
                     }
@@ -76,17 +76,17 @@ public class PantallaLogin extends BaseActivity {
     }
 
     private void doLogin() {
-        loginUser.execute(this,
+        loginUser.execute(
                 username.getText().toString(),
                 password.getText().toString(),
-                new ResultCallback<Void, Exception>() {
+                new ResultCallback<Void, Exception>(this) {
                     @Override
-                    public void onResult(Void result) {
+                    public void doOnResult(Void result) {
                         UserScr.goToProfile(PantallaLogin.this);
                     }
 
                     @Override
-                    public void onError(Exception error) {
+                    public void doOnError(Exception error) {
                         Toast.makeText(PantallaLogin.this, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show();
                     }

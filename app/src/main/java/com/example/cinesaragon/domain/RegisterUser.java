@@ -4,14 +4,21 @@ import android.app.Activity;
 
 import com.example.cinesaragon.domain.helpers.ResultCallback;
 import com.example.cinesaragon.model.User;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class RegisterUser {
 
+    final ThreadPoolExecutor executor;
     final FirebaseAuth authentication;
     final CreateUser createUser;
 
-    public RegisterUser(FirebaseAuth authentication, CreateUser createUser) {
+    public RegisterUser(ThreadPoolExecutor executor,
+                        FirebaseAuth authentication,
+                        CreateUser createUser) {
+        this.executor = executor;
         this.authentication = authentication;
         this.createUser = createUser;
     }
@@ -19,14 +26,14 @@ public class RegisterUser {
     public void execute(Activity activity,
                         String username, String password,
                         ResultCallback<Void, Exception> callback) {
-        authentication.createUserWithEmailAndPassword(
-                username, password)
-                .addOnCompleteListener(activity, task -> {
-                    if (task.isSuccessful()) {
-                        createUser.create(new User.Builder(username).build(), callback);
-                    } else {
-                        callback.onError(task.getException());
-                    }
-                });
+        executor.execute(() -> {
+            try {
+                Tasks.await(authentication.createUserWithEmailAndPassword(
+                        username, password));
+                createUser.create(new User.Builder(username).build(), callback);
+            } catch (Exception e) {
+                callback.onError(e);
+            }
+        });
     }
 }

@@ -83,14 +83,14 @@ public class MainActivity extends BaseActivity {
 
 
     private void requestCinemas() {
-        getCinemas.get(new ResultCallback<List<Cinema>, Exception>() {
+        getCinemas.get(new ResultCallback<List<Cinema>, Exception>(this) {
             @Override
-            public void onResult(List<Cinema> result) {
+            public void doOnResult(List<Cinema> result) {
                 Log.d("Sefford", "Loaded " + result.size() + " cinemas");
             }
 
             @Override
-            public void onError(Exception error) {
+            public void doOnError(Exception error) {
                 Toast.makeText(MainActivity.this, "An error happened", Toast.LENGTH_LONG).show();
             }
         });

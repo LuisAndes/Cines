@@ -61,21 +61,21 @@ public class UserScr extends BaseActivity {
     }
 
     private void requestUser() {
-        getCurrentUser.retrieve(new ResultCallback<User, Exception>() {
+        getCurrentUser.retrieve(new ResultCallback<User, Exception>(this) {
             @Override
-            public void onResult(User result) {
+            public void doOnResult(User result) {
                 setInitialContent(result);
             }
 
             @Override
-            public void onError(Exception error) {
+            public void doOnError(Exception error) {
 
             }
         });
     }
 
     private void saveUser() {
-        modifyCurrentUser.modify(this,
+        modifyCurrentUser.modify(
                 new User.Builder(this.email.getText().toString())
                         .setAddress(this.address.getText().toString())
                         .setCard(this.card.getText().toString())
@@ -84,15 +84,15 @@ public class UserScr extends BaseActivity {
                         .setPaypal(this.paypal.getText().toString())
                         .setPhone(this.phone.getText().toString())
                         .build(),
-                new ResultCallback<Void, Exception>() {
+                new ResultCallback<Void, Exception>(this) {
                     @Override
-                    public void onResult(Void result) {
+                    public void doOnResult(Void result) {
                         Toast.makeText(UserScr.this, "Modifications saved successfully.",
                                 Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onError(Exception error) {
+                    public void doOnError(Exception error) {
                         Toast.makeText(UserScr.this, "Could not save",
                                 Toast.LENGTH_SHORT).show();
                     }
