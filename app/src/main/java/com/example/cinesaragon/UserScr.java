@@ -11,7 +11,6 @@ import com.example.cinesaragon.domain.GetCurrentUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
 import com.example.cinesaragon.domain.helpers.ResultCallback;
 import com.example.cinesaragon.model.User;
-import com.google.firebase.database.DatabaseError;
 
 import javax.inject.Inject;
 
@@ -62,14 +61,14 @@ public class UserScr extends BaseActivity {
     }
 
     private void requestUser() {
-        getCurrentUser.retrieve(new ResultCallback<User, DatabaseError>() {
+        getCurrentUser.retrieve(new ResultCallback<User, Exception>() {
             @Override
             public void onResult(User result) {
                 setInitialContent(result);
             }
 
             @Override
-            public void onError(DatabaseError error) {
+            public void onError(Exception error) {
 
             }
         });

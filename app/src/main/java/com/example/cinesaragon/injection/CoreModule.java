@@ -2,8 +2,7 @@ package com.example.cinesaragon.injection;
 
 import com.example.cinesaragon.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,7 +16,7 @@ public class CoreModule {
     }
 
     @Provides
-    public DatabaseReference provideDatabaseInstance() {
-        return FirebaseDatabase.getInstance().getReference();
+    public FirebaseFirestore provideDatabaseInstance() {
+        return FirebaseFirestore.getInstance();
     }
 }

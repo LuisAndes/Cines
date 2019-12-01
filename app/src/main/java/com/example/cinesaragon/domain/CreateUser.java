@@ -2,21 +2,22 @@ package com.example.cinesaragon.domain;
 
 import com.example.cinesaragon.domain.helpers.ResultCallback;
 import com.example.cinesaragon.model.User;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 public class CreateUser {
 
-    final DatabaseReference database;
+    final FirebaseFirestore database;
 
-    public CreateUser(DatabaseReference database) {
+    public CreateUser(FirebaseFirestore database) {
         this.database = database;
     }
 
     public void create(User user, ResultCallback<Void, Exception> callback) {
-        database.child("users")
-                .child(user.getId())
-                .setValue(user)
+        database.collection("users")
+                .document(user.getEmail())
+                .set(user, SetOptions.merge())
                 .addOnSuccessListener(callback::onResult)
-                .addOnFailureListener(e -> callback.onError(e));
+                .addOnFailureListener(callback::onError);
     }
 }

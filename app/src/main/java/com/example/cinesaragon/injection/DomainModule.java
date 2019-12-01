@@ -8,7 +8,7 @@ import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
 import com.example.cinesaragon.domain.RegisterUser;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import dagger.Module;
 import dagger.Provides;
@@ -18,7 +18,7 @@ import dagger.Provides;
 public class DomainModule {
 
     @Provides
-    public CreateUser provideCreateUser(DatabaseReference database) {
+    public CreateUser provideCreateUser(FirebaseFirestore database) {
         return new CreateUser(database);
     }
 
@@ -35,13 +35,13 @@ public class DomainModule {
 
     @Provides
     public GetCurrentUser provideCurrentUser(FirebaseAuth authentication,
-                                             DatabaseReference database) {
+                                             FirebaseFirestore database) {
         return new GetCurrentUser(authentication, database);
     }
 
     @Provides
     public ModifyCurrentUser provideModifyCurrentUser(FirebaseAuth authentication,
-                                                      DatabaseReference database,
+                                                      FirebaseFirestore database,
                                                       CreateUser createUser) {
         return new ModifyCurrentUser(authentication, database, createUser);
     }
