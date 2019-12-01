@@ -1,5 +1,6 @@
 package com.example.cinesaragon.injection;
 
+import com.example.cinesaragon.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -7,7 +8,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(library = true)
+@Module(injects = {MainActivity.class}, library = true)
 public class CoreModule {
 
     @Provides
