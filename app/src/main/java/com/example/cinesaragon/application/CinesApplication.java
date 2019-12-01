@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.cinesaragon.injection.ApplicationModule;
 import com.example.cinesaragon.injection.CoreModule;
+import com.example.cinesaragon.injection.DomainModule;
 import com.example.cinesaragon.injection.NetworkModule;
 import com.google.firebase.FirebaseApp;
 
@@ -23,7 +24,8 @@ public class CinesApplication extends Application {
     ObjectGraph initializeGraph() {
         return ObjectGraph.create(new ApplicationModule(this),
                 new NetworkModule(),
-                new CoreModule());
+                new CoreModule(),
+                new DomainModule());
     }
 
     public <T> void inject(T instance) {
