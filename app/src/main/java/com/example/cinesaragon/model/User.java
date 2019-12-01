@@ -3,15 +3,27 @@ package com.example.cinesaragon.model;
 public class User {
 
     final String name;
+    final String lastName;
     final String email;
     final String address;
     final String card;
     final String paypal;
     final String phone;
 
-    private User(String email, String name, String address, String card, String paypal, String phone) {
+    private User(String lastName) {
+        this.name = "";
+        this.lastName = "";
+        this.email = "";
+        this.address = "";
+        this.card = "";
+        this.paypal = "";
+        this.phone = "";
+    }
+
+    private User(String email, String name, String lastName, String address, String card, String paypal, String phone) {
         this.name = name;
         this.email = email;
+        this.lastName = lastName;
         this.address = address;
         this.card = card;
         this.paypal = paypal;
@@ -24,6 +36,10 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getId() {
+        return email.replace("\\.", "_");
     }
 
     public String getAddress() {
@@ -54,6 +70,7 @@ public class User {
 
         String name;
         String email;
+        String lastName;
         String address;
         String card;
         String paypal;
@@ -70,6 +87,11 @@ public class User {
             this.card = user.card;
             this.paypal = user.paypal;
             this.phone = user.phone;
+        }
+
+        public Builder setLastName(String lastName) {
+            this.lastName = lastName;
+            return this;
         }
 
         public Builder setName(String name) {
@@ -98,7 +120,7 @@ public class User {
         }
 
         public User build() {
-            return new User(email, name, address, card, paypal, phone);
+            return new User(email, name, lastName, address, card, paypal, phone);
         }
     }
 }
