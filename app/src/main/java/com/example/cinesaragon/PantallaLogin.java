@@ -32,6 +32,10 @@ public class PantallaLogin extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_login);
+        initializeViews();
+    }
+
+    private void initializeViews() {
         this.isLogin = getIntent().getExtras().getBoolean(EXTRA_LOGIN);
 
         username = findViewById(R.id.txtUsuario);
