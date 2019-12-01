@@ -19,24 +19,24 @@ public class RegisterUser {
 
     public void execute(Activity activity,
                         String username, String password,
-                        ResultCallback<Void, Void> callback) {
+                        ResultCallback<Void, Exception> callback) {
         authentication.createUserWithEmailAndPassword(
                 username, password)
                 .addOnCompleteListener(activity, task -> {
                     if (task.isSuccessful()) {
                         createUserInDatabase(username, callback);
                     } else {
-                        callback.onError(null);
+                        callback.onError(task.getException());
                     }
                 });
     }
 
     private void createUserInDatabase(String username,
-                                      ResultCallback<Void, Void> callback) {
+                                      ResultCallback<Void, Exception> callback) {
         database.child("users")
                 .child(username.replaceAll("\\.", "_"))
                 .setValue(new User.Builder(username).build())
                 .addOnSuccessListener(callback::onResult)
-                .addOnFailureListener(e -> callback.onError(null));
+                .addOnFailureListener(e -> callback.onError(e));
     }
 }

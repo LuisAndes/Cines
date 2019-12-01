@@ -15,14 +15,14 @@ public class LoginUser {
 
     public void execute(Activity activity,
                         String username, String password,
-                        ResultCallback<Void, Void> callback) {
+                        ResultCallback<Void, Exception> callback) {
         authentication.signInWithEmailAndPassword(
                 username, password)
                 .addOnCompleteListener(activity, task -> {
                     if (task.isSuccessful()) {
                         callback.onResult(null);
                     } else {
-                        callback.onError(null);
+                        callback.onError(task.getException());
                     }
                 });
     }
