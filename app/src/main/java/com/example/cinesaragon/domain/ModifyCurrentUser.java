@@ -8,11 +8,11 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class ModifyCurrentUser {
+public class ModifyCurrentUser extends UseCase<User, Void> {
 
-    final ThreadPoolExecutor executor;
     final FirebaseAuth authentication;
     final FirebaseFirestore database;
     final CreateUser createUser;
@@ -21,30 +21,26 @@ public class ModifyCurrentUser {
                              FirebaseAuth authentication,
                              FirebaseFirestore database,
                              CreateUser createUser) {
-        this.executor = executor;
+        super(executor);
         this.authentication = authentication;
         this.database = database;
         this.createUser = createUser;
     }
 
     public void modify(User user, ResultCallback<Void, Exception> callback) {
-        executor.execute(() -> {
-            try {
-                final String oldEmail = authentication.getCurrentUser().getEmail();
-                final boolean emailChange = !oldEmail.equals(user.getEmail());
+        execute(user, callback);
+    }
 
-                Tasks.await(authentication.getCurrentUser().updateEmail(user.getEmail()));
+    @Override
+    protected void doWork(User user, ResultCallback<Void, Exception> callback) throws ExecutionException, InterruptedException {
+        final String oldEmail = authentication.getCurrentUser().getEmail();
+        final boolean emailChange = !oldEmail.equals(user.getEmail());
 
-                if (emailChange) {
-                    deleteOldUser(oldEmail);
-                }
+        Tasks.await(authentication.getCurrentUser().updateEmail(user.getEmail()));
 
-                createUser.create(user, callback);
-            } catch (Exception e) {
-                callback.onError(e);
-            }
-        });
-
+        if (emailChange) {
+            deleteOldUser(oldEmail);
+        }
     }
 
     private void deleteOldUser(String oldEmail) {

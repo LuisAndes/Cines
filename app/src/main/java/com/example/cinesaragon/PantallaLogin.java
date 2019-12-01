@@ -58,7 +58,7 @@ public class PantallaLogin extends BaseActivity {
     }
 
     private void doRegister() {
-        registerUser.execute(this,
+        registerUser.signUp(
                 username.getText().toString(),
                 password.getText().toString(),
                 new ResultCallback<Void, Exception>(this) {
@@ -76,7 +76,7 @@ public class PantallaLogin extends BaseActivity {
     }
 
     private void doLogin() {
-        loginUser.execute(
+        loginUser.signIn(
                 username.getText().toString(),
                 password.getText().toString(),
                 new ResultCallback<Void, Exception>(this) {

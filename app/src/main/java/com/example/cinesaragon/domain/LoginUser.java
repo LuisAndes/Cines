@@ -1,32 +1,32 @@
 package com.example.cinesaragon.domain;
 
 import com.example.cinesaragon.domain.helpers.ResultCallback;
+import com.example.cinesaragon.model.params.SignInParams;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 
-public class LoginUser {
+public class LoginUser extends UseCase<SignInParams, Void> {
 
-    final ThreadPoolExecutor executor;
     final FirebaseAuth authentication;
 
     public LoginUser(ThreadPoolExecutor executor, FirebaseAuth authentication) {
-        this.executor = executor;
+        super(executor);
         this.authentication = authentication;
     }
 
-    public void execute(String username,
-                        String password,
-                        ResultCallback<Void, Exception> callback) {
-        executor.execute(() -> {
-            try {
-                Tasks.await(authentication.signInWithEmailAndPassword(
-                        username, password));
-                callback.onResult(null);
-            } catch (Exception e) {
-                callback.onError(e);
-            }
-        });
+    public void signIn(String username,
+                       String password,
+                       ResultCallback<Void, Exception> callback) {
+        execute(new SignInParams(username, password), callback);
+    }
+
+    @Override
+    protected void doWork(SignInParams params, ResultCallback<Void, Exception> callback) throws ExecutionException, InterruptedException {
+        Tasks.await(authentication.signInWithEmailAndPassword(
+                params.getUsername(), params.getPassword()));
+        callback.onResult(null);
     }
 }
