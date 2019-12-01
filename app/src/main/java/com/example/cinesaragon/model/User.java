@@ -42,7 +42,7 @@ public class User {
         return phone;
     }
 
-    class Builder {
+    public static class Builder {
 
         String name;
         String email;
@@ -69,11 +69,6 @@ public class User {
             return this;
         }
 
-        public Builder setEmail(String email) {
-            this.email = email;
-            return this;
-        }
-
         public Builder setAddress(String address) {
             this.address = address;
             return this;
@@ -95,7 +90,7 @@ public class User {
         }
 
         public User build() {
-            return new User("", "", "", "", "", "");
+            return new User(email, name, address, card, paypal, phone);
         }
     }
 }
