@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.cinesaragon.domain.GetUnregisteredCinemas;
+import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.helpers.ResultCallback;
 import com.example.cinesaragon.model.Cinema;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +27,7 @@ public class MainActivity extends BaseActivity {
     @Inject
     FirebaseAuth authentication;
     @Inject
-    GetUnregisteredCinemas getCinemas;
+    GetCinemas getCinemas;
     @Inject
     LocationManager locationManager;
 

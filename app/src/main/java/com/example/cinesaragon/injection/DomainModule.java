@@ -4,8 +4,8 @@ import com.example.cinesaragon.MainActivity;
 import com.example.cinesaragon.PantallaLogin;
 import com.example.cinesaragon.UserScr;
 import com.example.cinesaragon.domain.CreateUser;
+import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.GetCurrentUser;
-import com.example.cinesaragon.domain.GetUnregisteredCinemas;
 import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
 import com.example.cinesaragon.domain.RegisterUser;
@@ -50,7 +50,7 @@ public class DomainModule {
     }
 
     @Provides
-    public GetUnregisteredCinemas provideUnregisteredCinemas(FirebaseFirestore database) {
-        return new GetUnregisteredCinemas(database);
+    public GetCinemas provideUnregisteredCinemas(FirebaseFirestore database) {
+        return new GetCinemas(database);
     }
 }

@@ -7,11 +7,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GetUnregisteredCinemas {
+public class GetCinemas {
 
     final FirebaseFirestore database;
 
-    public GetUnregisteredCinemas(FirebaseFirestore database) {
+    public GetCinemas(FirebaseFirestore database) {
         this.database = database;
     }
 
