@@ -10,7 +10,7 @@ public class User {
     final String paypal;
     final String phone;
 
-    private User(String lastName) {
+    private User() {
         this.name = "";
         this.lastName = "";
         this.email = "";
@@ -39,7 +39,7 @@ public class User {
     }
 
     public String getId() {
-        return email.replace("\\.", "_");
+        return email.replaceAll("\\.", "_");
     }
 
     public String getAddress() {
