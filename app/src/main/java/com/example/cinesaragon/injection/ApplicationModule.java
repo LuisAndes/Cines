@@ -5,7 +5,7 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 
-@Module(complete = false, library = true)
+@Module(library = true)
 public class ApplicationModule {
 
     private final Context context;

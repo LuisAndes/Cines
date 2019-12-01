@@ -1,5 +1,6 @@
 package com.example.cinesaragon.injection;
 
+import com.example.cinesaragon.MainActivity;
 import com.example.cinesaragon.PantallaLogin;
 import com.example.cinesaragon.UserScr;
 import com.example.cinesaragon.domain.CreateUser;
@@ -15,6 +16,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(injects = {PantallaLogin.class,
+        MainActivity.class,
         UserScr.class}, complete = false, library = true)
 public class DomainModule {
 
