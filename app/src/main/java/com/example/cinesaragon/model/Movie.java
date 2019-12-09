@@ -1,5 +1,6 @@
 package com.example.cinesaragon.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
@@ -9,6 +10,14 @@ public class Movie {
     final String description;
     final List<String> images;
     final String trailer;
+
+    private Movie() {
+        this.id = "";
+        this.name = "";
+        this.description = "";
+        this.images = new ArrayList<>();
+        this.trailer = "";
+    }
 
     private Movie(String id, String name, String description, List<String> images, String trailer) {
         this.id = id;

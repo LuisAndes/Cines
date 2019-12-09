@@ -6,12 +6,26 @@ public class Session {
     final String cinema;
     final String time;
     final int remainingSeats;
+    final int screen;
 
-    private Session(String movie, String cinema, String time, int remainingSeats) {
+    private Session() {
+        this.movie = "";
+        this.cinema = "";
+        this.time = "";
+        this.remainingSeats = 0;
+        this.screen = 0;
+    }
+
+    private Session(String movie, String cinema, String time, int remainingSeats, int screen) {
         this.movie = movie;
         this.cinema = cinema;
         this.time = time;
         this.remainingSeats = remainingSeats;
+        this.screen = screen;
+    }
+
+    public int getScreen() {
+        return screen;
     }
 
     public String getCinema() {

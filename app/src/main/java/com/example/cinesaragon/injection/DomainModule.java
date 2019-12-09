@@ -2,10 +2,12 @@ package com.example.cinesaragon.injection;
 
 import com.example.cinesaragon.MainActivity;
 import com.example.cinesaragon.PantallaLogin;
+import com.example.cinesaragon.RegUsrScr;
 import com.example.cinesaragon.UserScr;
 import com.example.cinesaragon.domain.CreateUser;
 import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.GetCurrentUser;
+import com.example.cinesaragon.domain.GetSessions;
 import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
 import com.example.cinesaragon.domain.RegisterUser;
@@ -18,6 +20,7 @@ import dagger.Module;
 import dagger.Provides;
 
 @Module(injects = {PantallaLogin.class,
+        RegUsrScr.class,
         MainActivity.class,
         UserScr.class}, complete = false, library = true)
 public class DomainModule {
@@ -60,5 +63,11 @@ public class DomainModule {
     public GetCinemas provideUnregisteredCinemas(ThreadPoolExecutor executor,
                                                  FirebaseFirestore database) {
         return new GetCinemas(executor, database);
+    }
+
+    @Provides
+    public GetSessions provideGetSessions(ThreadPoolExecutor executor,
+                                          FirebaseFirestore database) {
+        return new GetSessions(executor, database);
     }
 }
