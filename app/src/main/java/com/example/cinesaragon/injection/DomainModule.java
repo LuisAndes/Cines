@@ -6,6 +6,7 @@ import com.example.cinesaragon.RegUsrScr;
 import com.example.cinesaragon.UserScr;
 import com.example.cinesaragon.domain.CheckSessionAvailability;
 import com.example.cinesaragon.domain.CreateUser;
+import com.example.cinesaragon.domain.FilterSessions;
 import com.example.cinesaragon.domain.GetBillboard;
 import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.GetCurrentUser;
@@ -141,5 +142,11 @@ public class DomainModule {
     public CheckSessionAvailability provideSessionAvailabilty(ThreadPoolExecutor executor,
                                                               FirebaseFirestore database) {
         return new CheckSessionAvailability(executor, database);
+    }
+
+    @Provides
+    public FilterSessions provideFilterSessions(ThreadPoolExecutor executor,
+                                                GetSessions sessions) {
+        return new FilterSessions(executor, sessions);
     }
 }
