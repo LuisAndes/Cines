@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 public class GetSessions extends UseCase<Long, List<FullInfoSession>> {
 
-    final FirebaseFirestore database;
+    private final FirebaseFirestore database;
 
     public GetSessions(ThreadPoolExecutor executor, FirebaseFirestore database) {
         super(executor);
@@ -34,30 +34,30 @@ public class GetSessions extends UseCase<Long, List<FullInfoSession>> {
     }
 
     public List<FullInfoSession> getSessions() throws ExecutionException, InterruptedException {
-        final List<DocumentSnapshot> rawCinemas = Tasks.await(database.collection("cinemas")
+        private final List<DocumentSnapshot> rawCinemas = Tasks.await(database.collection("cinemas")
                 .get())
                 .getDocuments();
-        final Map<String, Cinema> cinemas = rawCinemas
+        private final Map<String, Cinema> cinemas = rawCinemas
                 .stream()
                 .collect(Collectors.toMap(element -> element.getReference().getPath(),
                         element -> element.toObject(Cinema.class)));
 
-        final List<DocumentSnapshot> rawMovies = Tasks.await(database.collection("movies")
+        private final List<DocumentSnapshot> rawMovies = Tasks.await(database.collection("movies")
                 .get())
                 .getDocuments();
-        final Map<String, Movie> movies = rawMovies
+        private final Map<String, Movie> movies = rawMovies
                 .stream()
                 .collect(Collectors.toMap(element -> element.getReference().getPath(),
                         element -> element.toObject(Movie.class)));
 
 
-        final List<DocumentSnapshot> rawSessions = Tasks.await(database.collection("sessions")
+        private final List<DocumentSnapshot> rawSessions = Tasks.await(database.collection("sessions")
                 .get())
                 .getDocuments();
         return rawSessions
                 .stream()
                 .map(element -> {
-                    final Session session = element.toObject(Session.class);
+                    private final Session session = element.toObject(Session.class);
                     return new FullInfoSession(movies.get(session.getMovie()),
                             cinemas.get(session.getCinema()),
                             session);

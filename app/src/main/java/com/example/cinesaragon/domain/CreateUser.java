@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class CreateUser extends UseCase<User, Void> {
 
-    final FirebaseFirestore database;
+    private final FirebaseFirestore database;
 
     public CreateUser(ThreadPoolExecutor executor, FirebaseFirestore database) {
         super(executor);

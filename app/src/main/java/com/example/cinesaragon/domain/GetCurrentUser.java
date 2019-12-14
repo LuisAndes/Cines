@@ -11,8 +11,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class GetCurrentUser extends UseCase<Void, User> {
 
-    final FirebaseAuth authentication;
-    final FirebaseFirestore database;
+    private final FirebaseAuth authentication;
+    private final FirebaseFirestore database;
 
     public GetCurrentUser(ThreadPoolExecutor executor, FirebaseAuth authentication, FirebaseFirestore database) {
         super(executor);

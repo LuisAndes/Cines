@@ -2,19 +2,21 @@ package com.example.cinesaragon.model;
 
 public class Ticket {
 
-    final String user;
-    final String movie;
-    final String session;
-    final String cinema;
+    private final String user;
+    private final String movie;
+    private final String session;
+    private final String cinema;
+    private final int screen;
 
     private Ticket(String user,
                    String movie,
                    String session,
-                   String cinema) {
+                   String cinema, int screen) {
         this.user = user;
         this.movie = movie;
         this.session = session;
         this.cinema = cinema;
+        this.screen = screen;
     }
 
     public String getSession() {
@@ -25,14 +27,33 @@ public class Ticket {
         return cinema;
     }
 
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Ticket{");
+        sb.append("movie='").append(movie).append('\'');
+        sb.append(", session='").append(session).append('\'');
+        sb.append(", screen=").append(screen);
+        sb.append('}');
+        return sb.toString();
+    }
+
     public class Builder {
-        String user = "";
-        String movie = "";
-        String session = "";
-        String cinema = "";
+        private String user = "";
+        private String movie = "";
+        private String session = "";
+        private String cinema = "";
+        private int screen = 0;
 
         public Builder(String user) {
             this.user = user;
+        }
+
+        public Builder(String user, FullInfoSession session) {
+            this(user);
+            this.movie = session.getMovie().getName();
+            this.cinema = session.getCinema().getName();
+            this.session = session.getSession().getTime();
+            this.screen = session.getSession().getScreen();
         }
 
         public Builder seeMovie(String movie) {
@@ -50,8 +71,13 @@ public class Ticket {
             return this;
         }
 
+        public Builder inScreen(int screen) {
+            this.screen = screen;
+            return this;
+        }
+
         public Ticket purchase() {
-            return new Ticket(user, movie, session, cinema);
+            return new Ticket(user, movie, session, cinema, screen);
         }
     }
 }

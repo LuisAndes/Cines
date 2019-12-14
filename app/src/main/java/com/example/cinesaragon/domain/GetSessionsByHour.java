@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class GetSessionsByHour extends UseCase<FilterByNumberParams, Map<Cinema, List<FullInfoSession>>> {
 
-    final GetSessions getSessions;
+    private final GetSessions getSessions;
 
     public GetSessionsByHour(ThreadPoolExecutor executor, GetSessions getSessions) {
         super(executor);

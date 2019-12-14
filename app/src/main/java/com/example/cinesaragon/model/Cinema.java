@@ -1,19 +1,17 @@
 package com.example.cinesaragon.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class Cinema {
 
-    final String name;
-    final String address;
-    final String phone;
-    final List<String> images;
+    private final String name;
+    private final String address;
+    private final String phone;
+    private final List<String> images;
 
-    private Cinema(){
+    private Cinema() {
         this.name = "";
         this.address = "";
         this.phone = "";

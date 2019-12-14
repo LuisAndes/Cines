@@ -6,12 +6,12 @@ import java.util.Objects;
 
 public class Movie {
 
-    final String name;
-    final String description;
-    final List<String> images;
-    final String trailer;
-    final int duration;
-    final List<String> genres;
+    private final String name;
+    private final String description;
+    private final List<String> images;
+    private final String trailer;
+    private final int duration;
+    private final List<String> genres;
 
     private Movie() {
         this.name = "";

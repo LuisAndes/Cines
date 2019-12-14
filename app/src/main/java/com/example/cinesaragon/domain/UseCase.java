@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 
 abstract class UseCase<P, R> {
-    final ThreadPoolExecutor executor;
+    private final ThreadPoolExecutor executor;
 
     UseCase(ThreadPoolExecutor executor) {
         this.executor = executor;

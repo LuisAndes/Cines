@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.cinesaragon.domain.GetSessions;
 import com.example.cinesaragon.domain.helpers.ResultCallback;
-import com.example.cinesaragon.model.Session;
+import com.example.cinesaragon.model.FullInfoSession;
 
 import java.util.List;
 
@@ -21,9 +21,9 @@ public class RegUsrScr extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reg_usr_scr);
-        getSessions.get(new ResultCallback<List<Session>, Exception>(this) {
+        getSessions.get(0L, new ResultCallback<List<FullInfoSession>, Exception>(this) {
             @Override
-            public void doOnResult(List<Session> result) {
+            public void doOnResult(List<FullInfoSession> result) {
 
             }
 

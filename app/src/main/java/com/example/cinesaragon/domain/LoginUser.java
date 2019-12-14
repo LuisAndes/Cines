@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class LoginUser extends UseCase<SignInParams, Void> {
 
-    final FirebaseAuth authentication;
+    private final FirebaseAuth authentication;
 
     public LoginUser(ThreadPoolExecutor executor, FirebaseAuth authentication) {
         super(executor);

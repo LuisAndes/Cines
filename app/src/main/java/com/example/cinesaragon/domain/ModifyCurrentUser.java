@@ -13,9 +13,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class ModifyCurrentUser extends UseCase<User, Void> {
 
-    final FirebaseAuth authentication;
-    final FirebaseFirestore database;
-    final CreateUser createUser;
+    private final FirebaseAuth authentication;
+    private final FirebaseFirestore database;
+    private final CreateUser createUser;
 
     public ModifyCurrentUser(ThreadPoolExecutor executor,
                              FirebaseAuth authentication,
@@ -33,8 +33,8 @@ public class ModifyCurrentUser extends UseCase<User, Void> {
 
     @Override
     protected void doWork(User user, ResultCallback<Void, Exception> callback) throws ExecutionException, InterruptedException {
-        final String oldEmail = authentication.getCurrentUser().getEmail();
-        final boolean emailChange = !oldEmail.equals(user.getEmail());
+        private final String oldEmail = authentication.getCurrentUser().getEmail();
+        private final boolean emailChange = !oldEmail.equals(user.getEmail());
 
         Tasks.await(authentication.getCurrentUser().updateEmail(user.getEmail()));
 

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class GetBillboard extends UseCase<Void, Map<Movie, List<FullInfoSession>>> {
 
-    final GetSessions getSessions;
+    private final GetSessions getSessions;
 
     public GetBillboard(ThreadPoolExecutor executor, GetSessions getSessions) {
         super(executor);

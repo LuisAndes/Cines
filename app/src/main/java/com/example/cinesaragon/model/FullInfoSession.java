@@ -2,9 +2,9 @@ package com.example.cinesaragon.model;
 
 public class FullInfoSession {
 
-    final Movie movie;
-    final Cinema cinema;
-    final Session session;
+    private final Movie movie;
+    private final Cinema cinema;
+    private final Session session;
 
     public FullInfoSession(Movie movie, Cinema cinema, Session session) {
         this.movie = movie;
@@ -27,9 +27,10 @@ public class FullInfoSession {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("FullInfoSession{");
-        sb.append("movie=").append(movie.name);
-        sb.append(", cinema=").append(cinema.name);
-        sb.append(", session=").append(session.time).append(" - ").append(session.screen);
+        sb.append("movie=").append(movie.getName());
+        sb.append(", cinema=").append(cinema.getName());
+        sb.append(", session=").append(session.getTime());
+        sb.append(", screen=").append(session.getScreen());
         sb.append('}');
         return sb.toString();
     }

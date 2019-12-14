@@ -4,7 +4,7 @@ import android.app.Activity;
 
 public abstract class ResultCallback<R, E> {
 
-    final Activity activity;
+    private final Activity activity;
 
     public ResultCallback(Activity activity) {
         this.activity = activity;

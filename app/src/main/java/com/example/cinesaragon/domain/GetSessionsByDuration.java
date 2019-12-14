@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public class GetSessionsByDuration extends UseCase<FilterByNumberParams, Map<Movie, List<FullInfoSession>>> {
 
-    final GetSessions getSessions;
+    private final GetSessions getSessions;
 
     public GetSessionsByDuration(ThreadPoolExecutor executor, GetSessions getSessions) {
         super(executor);

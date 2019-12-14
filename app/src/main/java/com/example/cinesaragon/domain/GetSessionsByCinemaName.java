@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class GetSessionsByCinemaName extends UseCase<String, Map<Cinema, List<FullInfoSession>>> {
 
-    final GetSessions getSessions;
+    private final GetSessions getSessions;
 
     public GetSessionsByCinemaName(ThreadPoolExecutor executor, GetSessions getSessions) {
         super(executor);

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class GetCinemas extends UseCase<Void, List<Cinema>> {
 
-    final FirebaseFirestore database;
+    private final FirebaseFirestore database;
 
     public GetCinemas(ThreadPoolExecutor executor,
                       FirebaseFirestore database) {

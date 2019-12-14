@@ -4,11 +4,11 @@ import java.util.Objects;
 
 public class Session {
 
-    final String movie;
-    final String cinema;
-    final String time;
-    final int remainingSeats;
-    final int screen;
+    private final String movie;
+    private final String cinema;
+    private final String time;
+    private final int remainingSeats;
+    private final int screen;
 
     private Session() {
         this.movie = "";

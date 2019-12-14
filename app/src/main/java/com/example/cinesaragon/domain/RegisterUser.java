@@ -11,8 +11,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 public class RegisterUser extends UseCase<SignInParams, Void> {
 
-    final FirebaseAuth authentication;
-    final CreateUser createUser;
+    private final FirebaseAuth authentication;
+    private final CreateUser createUser;
 
     public RegisterUser(ThreadPoolExecutor executor,
                         FirebaseAuth authentication,

@@ -2,13 +2,13 @@ package com.example.cinesaragon.model;
 
 public class User {
 
-    final String name;
-    final String lastName;
-    final String email;
-    final String address;
-    final String card;
-    final String paypal;
-    final String phone;
+    private final String name;
+    private final String lastName;
+    private final String email;
+    private final String address;
+    private final String card;
+    private final String paypal;
+    private final String phone;
 
     private User() {
         this.name = "";
@@ -68,13 +68,13 @@ public class User {
 
     public static class Builder {
 
-        String name;
-        String email;
-        String lastName;
-        String address;
-        String card;
-        String paypal;
-        String phone;
+        private String name;
+        private String email;
+        private String lastName;
+        private String address;
+        private String card;
+        private String paypal;
+        private String phone;
 
         public Builder(String email) {
             this.email = email;
