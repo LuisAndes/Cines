@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Cinema {
 
@@ -11,22 +12,19 @@ public class Cinema {
     final String address;
     final String phone;
     final List<String> images;
-    final Map<String, List<Session>> sessions;
 
     private Cinema(){
         this.name = "";
         this.address = "";
         this.phone = "";
         this.images = new ArrayList<>();
-        this.sessions = new HashMap<>();
     }
 
-    private Cinema(String name, String address, String phone, List<String> images, Map<String, List<Session>> sessions) {
+    private Cinema(String name, String address, String phone, List<String> images) {
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.images = images;
-        this.sessions = sessions;
     }
 
     public String getName() {
@@ -45,7 +43,26 @@ public class Cinema {
         return images;
     }
 
-    public Map<String, List<Session>> getSessions() {
-        return sessions;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cinema)) return false;
+        Cinema cinema = (Cinema) o;
+        return Objects.equals(name, cinema.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Cinema{");
+        sb.append("name='").append(name).append('\'');
+        sb.append(", address='").append(address).append('\'');
+        sb.append(", phone='").append(phone).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

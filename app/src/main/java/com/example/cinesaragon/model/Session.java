@@ -1,5 +1,7 @@
 package com.example.cinesaragon.model;
 
+import java.util.Objects;
+
 public class Session {
 
     final String movie;
@@ -42,5 +44,20 @@ public class Session {
 
     public int getRemainingSeats() {
         return remainingSeats;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Session)) return false;
+        Session session = (Session) o;
+        return Objects.equals(movie, session.movie) &&
+                Objects.equals(cinema, session.cinema) &&
+                Objects.equals(time, session.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(movie, cinema, time);
     }
 }
