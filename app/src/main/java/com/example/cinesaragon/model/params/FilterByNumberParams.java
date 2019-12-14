@@ -1,11 +1,11 @@
 package com.example.cinesaragon.model.params;
 
-public class FilterByDurationParams {
+public class FilterByNumberParams {
 
     private final Mode filtering;
     private final int threshold;
 
-    public FilterByDurationParams(Mode filtering, int threshold) {
+    public FilterByNumberParams(Mode filtering, int threshold) {
         this.filtering = filtering;
         this.threshold = threshold;
     }

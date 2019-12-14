@@ -42,6 +42,14 @@ public class Session {
         return time;
     }
 
+    public int getIntegerTime() {
+        try {
+            return Integer.valueOf(time.replace(":", ""));
+        } catch (Exception x) {
+            return 0;
+        }
+    }
+
     public int getRemainingSeats() {
         return remainingSeats;
     }
