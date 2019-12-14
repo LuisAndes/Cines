@@ -2,21 +2,20 @@ package com.example.cinesaragon.domain;
 
 import com.example.cinesaragon.domain.helpers.ResultCallback;
 import com.example.cinesaragon.model.Cinema;
+import com.example.cinesaragon.model.FullInfoSession;
 import com.example.cinesaragon.model.Movie;
 import com.example.cinesaragon.model.Session;
 import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.stream.Collectors;
 
-public class GetSessions extends UseCase<Long, List<Session>> {
+public class GetSessions extends UseCase<Long, List<FullInfoSession>> {
 
     final FirebaseFirestore database;
 
@@ -25,12 +24,16 @@ public class GetSessions extends UseCase<Long, List<Session>> {
         this.database = database;
     }
 
-    public void get(Long day, ResultCallback<List<Session>, Exception> callback) {
+    public void get(Long day, ResultCallback<List<FullInfoSession>, Exception> callback) {
         execute(day, callback);
     }
 
     @Override
-    protected void doWork(Long day, ResultCallback<List<Session>, Exception> callback) throws ExecutionException, InterruptedException {
+    protected void doWork(Long day, ResultCallback<List<FullInfoSession>, Exception> callback) throws ExecutionException, InterruptedException {
+        callback.onResult(getSessions());
+    }
+
+    public List<FullInfoSession> getSessions() throws ExecutionException, InterruptedException {
         final List<DocumentSnapshot> rawCinemas = Tasks.await(database.collection("cinemas")
                 .get())
                 .getDocuments();
@@ -47,9 +50,18 @@ public class GetSessions extends UseCase<Long, List<Session>> {
                 .collect(Collectors.toMap(element -> element.getReference().getPath(),
                         element -> element.toObject(Movie.class)));
 
-        for(int i = 0; i < cinemas.size() * movies.size();i++) {
-            
-        }
 
+        final List<DocumentSnapshot> rawSessions = Tasks.await(database.collection("sessions")
+                .get())
+                .getDocuments();
+        return rawSessions
+                .stream()
+                .map(element -> {
+                    final Session session = element.toObject(Session.class);
+                    return new FullInfoSession(movies.get(session.getMovie()),
+                            cinemas.get(session.getCinema()),
+                            session);
+                })
+                .collect(Collectors.toList());
     }
 }
