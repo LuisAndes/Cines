@@ -5,6 +5,7 @@ import android.location.LocationManager;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -25,7 +26,12 @@ public class CoreModule {
 
     @Provides
     public FirebaseFirestore provideDatabaseInstance() {
-        return FirebaseFirestore.getInstance();
+        final FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        final FirebaseFirestore instance = FirebaseFirestore.getInstance();
+        instance.setFirestoreSettings(settings);
+        return instance;
     }
 
     @Provides
