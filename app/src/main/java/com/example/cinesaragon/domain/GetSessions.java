@@ -34,30 +34,30 @@ public class GetSessions extends UseCase<Long, List<FullInfoSession>> {
     }
 
     public List<FullInfoSession> getSessions() throws ExecutionException, InterruptedException {
-        private final List<DocumentSnapshot> rawCinemas = Tasks.await(database.collection("cinemas")
+        final List<DocumentSnapshot> rawCinemas = Tasks.await(database.collection("cinemas")
                 .get())
                 .getDocuments();
-        private final Map<String, Cinema> cinemas = rawCinemas
+        final Map<String, Cinema> cinemas = rawCinemas
                 .stream()
                 .collect(Collectors.toMap(element -> element.getReference().getPath(),
                         element -> element.toObject(Cinema.class)));
 
-        private final List<DocumentSnapshot> rawMovies = Tasks.await(database.collection("movies")
+        final List<DocumentSnapshot> rawMovies = Tasks.await(database.collection("movies")
                 .get())
                 .getDocuments();
-        private final Map<String, Movie> movies = rawMovies
+        final Map<String, Movie> movies = rawMovies
                 .stream()
                 .collect(Collectors.toMap(element -> element.getReference().getPath(),
                         element -> element.toObject(Movie.class)));
 
 
-        private final List<DocumentSnapshot> rawSessions = Tasks.await(database.collection("sessions")
+        final List<DocumentSnapshot> rawSessions = Tasks.await(database.collection("sessions")
                 .get())
                 .getDocuments();
         return rawSessions
                 .stream()
                 .map(element -> {
-                    private final Session session = element.toObject(Session.class);
+                    final Session session = element.toObject(Session.class);
                     return new FullInfoSession(movies.get(session.getMovie()),
                             cinemas.get(session.getCinema()),
                             session);
