@@ -4,6 +4,7 @@ import com.example.cinesaragon.MainActivity;
 import com.example.cinesaragon.PantallaLogin;
 import com.example.cinesaragon.RegUsrScr;
 import com.example.cinesaragon.UserScr;
+import com.example.cinesaragon.domain.CheckSessionAvailability;
 import com.example.cinesaragon.domain.CreateUser;
 import com.example.cinesaragon.domain.GetBillboard;
 import com.example.cinesaragon.domain.GetCinemas;
@@ -112,7 +113,7 @@ public class DomainModule {
 
     @Provides
     public GetSessionsByGenre provideGetSessionsByGenre(ThreadPoolExecutor executor,
-                                                      GetSessions getSessions) {
+                                                        GetSessions getSessions) {
         return new GetSessionsByGenre(executor, getSessions);
     }
 
@@ -134,5 +135,11 @@ public class DomainModule {
                                              FirebaseAuth authentication,
                                              FirebaseFirestore database) {
         return new GetUserTickets(executor, authentication, database);
+    }
+
+    @Provides
+    public CheckSessionAvailability provideSessionAvailabilty(ThreadPoolExecutor executor,
+                                                              FirebaseFirestore database) {
+        return new CheckSessionAvailability(executor, database);
     }
 }
