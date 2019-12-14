@@ -37,7 +37,7 @@ public class Ticket {
         return sb.toString();
     }
 
-    public class Builder {
+    public static class Builder {
         private String user = "";
         private String movie = "";
         private String session = "";

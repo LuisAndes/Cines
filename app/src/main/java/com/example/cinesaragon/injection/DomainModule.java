@@ -17,6 +17,7 @@ import com.example.cinesaragon.domain.GetSessionsByHour;
 import com.example.cinesaragon.domain.GetSessionsByMovieName;
 import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
+import com.example.cinesaragon.domain.PurchaseTicket;
 import com.example.cinesaragon.domain.RegisterUser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -118,5 +119,12 @@ public class DomainModule {
     public GetSession provideGetSession(ThreadPoolExecutor executor,
                                         FirebaseFirestore database) {
         return new GetSession(executor, database);
+    }
+
+    @Provides
+    public PurchaseTicket providePurchaseTicket(ThreadPoolExecutor executor,
+                                                FirebaseAuth authentication,
+                                                FirebaseFirestore database) {
+        return new PurchaseTicket(executor, authentication, database);
     }
 }
