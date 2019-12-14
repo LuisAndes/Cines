@@ -6,29 +6,29 @@ import java.util.Objects;
 
 public class Movie {
 
-    final String id;
     final String name;
     final String description;
     final List<String> images;
     final String trailer;
     final int duration;
+    final List<String> genres;
 
     private Movie() {
-        this.id = "";
         this.name = "";
         this.description = "";
         this.images = new ArrayList<>();
         this.trailer = "";
         this.duration = 0;
+        this.genres = new ArrayList<>();
     }
 
-    private Movie(String id, String name, String description, List<String> images, String trailer, int duration) {
-        this.id = id;
+    private Movie(String name, String description, List<String> images, String trailer, int duration, List<String> genres) {
         this.name = name;
         this.description = description;
         this.images = images;
         this.trailer = trailer;
         this.duration = duration;
+        this.genres = genres;
     }
 
     public String getName() {
@@ -49,6 +49,10 @@ public class Movie {
 
     public int getDuration() {
         return duration;
+    }
+
+    public List<String> getGenres() {
+        return genres;
     }
 
     @Override
