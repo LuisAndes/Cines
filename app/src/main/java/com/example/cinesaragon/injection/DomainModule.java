@@ -9,6 +9,7 @@ import com.example.cinesaragon.domain.GetBillboard;
 import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.GetCurrentUser;
 import com.example.cinesaragon.domain.GetSessions;
+import com.example.cinesaragon.domain.GetSessionsByMovieName;
 import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
 import com.example.cinesaragon.domain.RegisterUser;
@@ -76,5 +77,11 @@ public class DomainModule {
     public GetBillboard provideGetBillboard(ThreadPoolExecutor executor,
                                             GetSessions getSessions) {
         return new GetBillboard(executor, getSessions);
+    }
+
+    @Provides
+    public GetSessionsByMovieName provideGetSessionsByMovieName(ThreadPoolExecutor executor,
+                                                                GetSessions getSessions) {
+        return new GetSessionsByMovieName(executor, getSessions);
     }
 }
