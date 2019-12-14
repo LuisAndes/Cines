@@ -10,6 +10,7 @@ import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.GetCurrentUser;
 import com.example.cinesaragon.domain.GetSessions;
 import com.example.cinesaragon.domain.GetSessionsByCinemaName;
+import com.example.cinesaragon.domain.GetSessionsByDuration;
 import com.example.cinesaragon.domain.GetSessionsByMovieName;
 import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
@@ -90,5 +91,11 @@ public class DomainModule {
     public GetSessionsByCinemaName provieGetSessionsByCinemaName(ThreadPoolExecutor executor,
                                                                  GetSessions getSessions) {
         return new GetSessionsByCinemaName(executor, getSessions);
+    }
+
+    @Provides
+    public GetSessionsByDuration provideGetSessionsByDuration(ThreadPoolExecutor executor,
+                                                              GetSessions getSessions) {
+        return new GetSessionsByDuration(executor, getSessions);
     }
 }
