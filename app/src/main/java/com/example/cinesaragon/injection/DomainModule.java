@@ -5,6 +5,7 @@ import com.example.cinesaragon.PantallaLogin;
 import com.example.cinesaragon.RegUsrScr;
 import com.example.cinesaragon.UserScr;
 import com.example.cinesaragon.domain.CreateUser;
+import com.example.cinesaragon.domain.GetBillboard;
 import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.GetCurrentUser;
 import com.example.cinesaragon.domain.GetSessions;
@@ -69,5 +70,11 @@ public class DomainModule {
     public GetSessions provideGetSessions(ThreadPoolExecutor executor,
                                           FirebaseFirestore database) {
         return new GetSessions(executor, database);
+    }
+
+    @Provides
+    public GetBillboard provideGetBillboard(ThreadPoolExecutor executor,
+                                            GetSessions getSessions) {
+        return new GetBillboard(executor, getSessions);
     }
 }
