@@ -4,16 +4,18 @@ public class Ticket {
 
     private final String user;
     private final String movie;
+    private final String day;
     private final String session;
     private final String cinema;
     private final int screen;
 
     private Ticket(String user,
                    String movie,
-                   String session,
+                   String day, String session,
                    String cinema, int screen) {
         this.user = user;
         this.movie = movie;
+        this.day = day;
         this.session = session;
         this.cinema = cinema;
         this.screen = screen;
@@ -31,7 +33,7 @@ public class Ticket {
     public String toString() {
         final StringBuffer sb = new StringBuffer("Ticket{");
         sb.append("movie='").append(movie).append('\'');
-        sb.append(", session='").append(session).append('\'');
+        sb.append(", session='").append(day).append(" ").append(session).append('\'');
         sb.append(", screen=").append(screen);
         sb.append('}');
         return sb.toString();
@@ -40,6 +42,7 @@ public class Ticket {
     public static class Builder {
         private String user = "";
         private String movie = "";
+        private String day = "";
         private String session = "";
         private String cinema = "";
         private int screen = 0;
@@ -61,6 +64,11 @@ public class Ticket {
             return this;
         }
 
+        public Builder onDay(String day) {
+            this.day = day;
+            return this;
+        }
+
         public Builder at(String session) {
             this.session = session;
             return this;
@@ -77,7 +85,7 @@ public class Ticket {
         }
 
         public Ticket purchase() {
-            return new Ticket(user, movie, session, cinema, screen);
+            return new Ticket(user, movie, day, session, cinema, screen);
         }
     }
 }
