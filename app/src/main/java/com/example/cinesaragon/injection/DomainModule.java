@@ -12,11 +12,6 @@ import com.example.cinesaragon.domain.GetCinemas;
 import com.example.cinesaragon.domain.GetCurrentUser;
 import com.example.cinesaragon.domain.GetSession;
 import com.example.cinesaragon.domain.GetSessions;
-import com.example.cinesaragon.domain.GetSessionsByCinemaName;
-import com.example.cinesaragon.domain.GetSessionsByDuration;
-import com.example.cinesaragon.domain.GetSessionsByGenre;
-import com.example.cinesaragon.domain.GetSessionsByHour;
-import com.example.cinesaragon.domain.GetSessionsByMovieName;
 import com.example.cinesaragon.domain.GetUserTickets;
 import com.example.cinesaragon.domain.LoginUser;
 import com.example.cinesaragon.domain.ModifyCurrentUser;
@@ -86,36 +81,6 @@ public class DomainModule {
     public GetBillboard provideGetBillboard(ThreadPoolExecutor executor,
                                             GetSessions getSessions) {
         return new GetBillboard(executor, getSessions);
-    }
-
-    @Provides
-    public GetSessionsByMovieName provideGetSessionsByMovieName(ThreadPoolExecutor executor,
-                                                                GetSessions getSessions) {
-        return new GetSessionsByMovieName(executor, getSessions);
-    }
-
-    @Provides
-    public GetSessionsByCinemaName provieGetSessionsByCinemaName(ThreadPoolExecutor executor,
-                                                                 GetSessions getSessions) {
-        return new GetSessionsByCinemaName(executor, getSessions);
-    }
-
-    @Provides
-    public GetSessionsByDuration provideGetSessionsByDuration(ThreadPoolExecutor executor,
-                                                              GetSessions getSessions) {
-        return new GetSessionsByDuration(executor, getSessions);
-    }
-
-    @Provides
-    public GetSessionsByHour provideGetSessionsByHour(ThreadPoolExecutor executor,
-                                                      GetSessions getSessions) {
-        return new GetSessionsByHour(executor, getSessions);
-    }
-
-    @Provides
-    public GetSessionsByGenre provideGetSessionsByGenre(ThreadPoolExecutor executor,
-                                                        GetSessions getSessions) {
-        return new GetSessionsByGenre(executor, getSessions);
     }
 
     @Provides
